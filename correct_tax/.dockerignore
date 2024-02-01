@@ -1,0 +1,8 @@
+# folders
+venv
+__pycache__
+
+# files
+*.sqlite3
+*.xlsx
+input_data*

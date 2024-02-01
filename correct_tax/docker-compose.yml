@@ -1,0 +1,35 @@
+version: '3.8'
+
+volumes:
+  static:
+
+services:
+
+  django-app:
+    build:
+      context: .
+    ports:
+      - '8000:8000'
+    container_name: django
+    env_file:
+      - environ/.env
+    volumes:
+      - ./:/app
+      - static:/app/static
+    command: sh -c "python manage.py collectstatic --no-input &&
+                    python manage.py runserver 0.0.0.0:8000"
+
+  nginx:
+    container_name: nginx
+    working_dir: /app
+    image: nginx
+    restart: always
+    ports:
+      - "2567:2567"
+    volumes:
+      - static:/app/static
+      - ./docker/nginx/dev/:/etc/nginx/conf.d:ro
+    links:
+      - django-app
+    depends_on:
+      - django-app
