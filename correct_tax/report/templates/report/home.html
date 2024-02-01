@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'report/css/style.css' %}">
+  <title>Correct tax</title>
+</head>
+<body>
+  <header id="header">
+    <h1>Welcome to correct tax check app!</h1>
+  </header>
+
+  <main id="main">
+    <div class="main-wrapper">
+      {% if file_url %}
+        <p class="status">Report is <strong>ready</strong>!</p>
+        <div class="download">
+          <a href="{{ file_url }}" download="{{ file_url }}">Link for download</a>
+        </div>
+      {% else %}
+        <div>
+          <p class="instruction">Here you can send <strong>excel</strong> for generating the <strong>report</strong></p>
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <p><button type="submit">Submit</button></p>
+        </form>
+      {% endif %}
+    </div>
+  </main>
+
+  <footer id="footer">
+    <div>
+      <h2>Thank you for using our service!</h2>
+    </div>
+    <div>
+      <p class="developer">Developed by <strong>Denis Strigo</strong></p>
+    </div>
+  </footer>
+</body>
+</html>
