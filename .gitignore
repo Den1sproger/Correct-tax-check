@@ -1,0 +1,12 @@
+# folders
+venv
+__pycache__
+migrations
+
+# files
+*.sqlite3
+test.py
+example_data.xlsx
+input_data*
+report_*
+.env*
