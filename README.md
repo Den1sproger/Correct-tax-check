@@ -21,6 +21,7 @@ python3 -m venv venv
 ```
 
 2. Enable virtual environment
+
 Windows
 ```
 venv/Scripts/Activate.ps1
