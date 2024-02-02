@@ -10,7 +10,8 @@ from correct_tax.settings import BASE_DIR, MEDIA_URL
 
 
 def handle_uploaded_file(f) -> str:
-    filepath = os.path.join(BASE_DIR, f"uploads/input_data_{datetime.datetime.now()}.xlsx")
+    filename = f'input_data_{datetime.datetime.now()}'.replace(':', '_').replace('.', '_').replace(' ', '-')
+    filepath = os.path.join(BASE_DIR, 'uploads', f'{filename}.xlsx')
 
     with open(filepath, "wb+") as destination:
         for chunk in f.chunks():

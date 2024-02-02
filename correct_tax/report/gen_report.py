@@ -15,7 +15,7 @@ class ReportGeneration:
 
     def __init__(self, filepath: str) -> None:
         wb = openpyxl.load_workbook(filename=filepath, read_only=True)
-        self.time_create = filepath.split('uploads/input_data_')[-1].replace('.xlsx', '')
+        self.time_create = filepath.split('input_data_')[-1].replace('.xlsx', '')
         self.ws = wb.active
         self.data_for_write = []
         self.wb_report = openpyxl.Workbook()
