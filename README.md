@@ -20,17 +20,28 @@ Mac/Linux
 python3 -m venv venv
 ```
 
-2. Install dependencies
+2. Enable virtual environment
+Windows
+```
+venv/Scripts/Activate.ps1
+```
+
+Mac/Linux
+```
+source venv/bin/activate
+```
+
+3. Install dependencies
 ```
 pip install -r correct_tax/requirements.txt
 ```
 ### Method without makefile
 ***
-4. Change project directory
+3. Change project directory
 ```
 cd correct_tax
 ```
-5. Collect static files
+4. Collect static files
 
 Windows
 ```
@@ -40,7 +51,7 @@ Mac/Linux
 ```
 python3 manage.py collectstatic --no-input
 ```
-6. Run server
+5. Run server
 
 Windows
 ```
@@ -52,11 +63,11 @@ python3 manage.py runserver
 ```
 ### Method via makefile
 ***
-4. Collect static files
+3. Collect static files
 ```
 make static
 ```
-5. Run server
+4. Run server
 ```
 make run
 ```
