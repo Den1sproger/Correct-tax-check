@@ -15,6 +15,7 @@ class ReportGeneration:
 
     def __init__(self, filepath: str) -> None:
         wb = openpyxl.load_workbook(filename=filepath, read_only=True)
+        self.input_file_path = filepath
         self.time_create = filepath.split('input_data_')[-1].replace('.xlsx', '')
         self.ws = wb.active
         self.data_for_write = []
@@ -25,11 +26,8 @@ class ReportGeneration:
 
     def __create_report_cap(self):
         # add headers
-        wb = openpyxl.load_workbook(filename=self.REPORT_HEADER_FILE, read_only=True)
-        header_ws = wb.active
-
-        for row in header_ws.iter_rows(values_only=True):
-            self.ws_report.append(row)
+        self.ws_report.append(['Филиал', 'Сотрудник', 'Налоговая база', 'Налог', 'Отклонения'])
+        self.ws_report.append([None, None, None, 'Исчислено всего', 'Исчислено всего по формуле'])
 
         # merging cells
         for interval in ('A1:A2', 'B1:B2', 'C1:C2', 'D1:E1', 'F1:F2'):
@@ -138,4 +136,4 @@ class ReportGeneration:
 
 
     def __del__(self):
-        return
+        os.remove(self.input_file_path)

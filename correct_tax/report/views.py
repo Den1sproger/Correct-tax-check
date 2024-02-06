@@ -1,8 +1,8 @@
-import datetime
 import os
 
 from django.shortcuts import render
 from django.views import View
+from django.utils import timezone
 from .forms import UploadExcelFileForm
 from .gen_report import ReportGeneration
 from correct_tax.settings import BASE_DIR, MEDIA_URL
@@ -10,7 +10,8 @@ from correct_tax.settings import BASE_DIR, MEDIA_URL
 
 
 def handle_uploaded_file(f) -> str:
-    filename = f'input_data_{datetime.datetime.now()}'.replace(':', '_').replace('.', '_').replace(' ', '-')
+    timestamp = timezone.localtime(timezone.now(), timezone.get_current_timezone())
+    filename = f'input_data_{timestamp}'.replace(':', '_').replace('.', '_').replace(' ', '-')
     filepath = os.path.join(BASE_DIR, 'uploads', f'{filename}.xlsx')
 
     with open(filepath, "wb+") as destination:
