@@ -4,13 +4,12 @@ import openpyxl
 import pandas as pd
 
 from openpyxl.styles import PatternFill, Alignment, Font
-from correct_tax.settings import BASE_DIR, MEDIA_ROOT
+from correct_tax.settings import MEDIA_ROOT
 
 
 
 class ReportGeneration:
-
-    REPORT_HEADER_FILE = os.path.join(BASE_DIR, 'report/static/report/xl/rept_header.xlsx')
+    """Generating report"""
     
 
     def __init__(self, filepath: str) -> None:
