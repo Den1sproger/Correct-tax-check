@@ -11,6 +11,8 @@ services:
     ports:
       - '8000:8000'
     container_name: django
+    env_file:
+      - environ/.env
     volumes:
       - ./:/app
       - static:/app/static
