@@ -6,7 +6,12 @@ Test task on checking on the correctness of taxes. This is a web application wit
 Clone this repository
 ```
 git clone https://github.com/Den1sproger/Correct-tax-check.git
+
 ```
+
+Create Django Secret Key [here](https://djecrety.ir/).
+
+Paste secret key to the: **correct_tax/environ/.env**
 
 1. Create virtual environment
 
