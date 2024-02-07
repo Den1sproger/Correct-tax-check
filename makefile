@@ -6,3 +6,5 @@ migrate:
 	cd correct_tax && python3 manage.py migrate
 static:
 	cd correct_tax && python3 manage.py collectstatic --no-input
+all-tests:
+	cd correct_tax && python3 manage.py test .
