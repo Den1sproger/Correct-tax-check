@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
+from http import HTTPStatus
 from .forms import UploadExcelFileForm
 
 
@@ -14,7 +15,8 @@ class GetPageTestCase(TestCase):
     def test_get_home_page(self):
         path = reverse('home')
         response = self.client.get(path)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, HTTPStatus.OK)
+        self.assertTemplateUsed(response, 'report/home.html')
 
 
     def tearDown(self):
