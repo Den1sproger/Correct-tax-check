@@ -39,3 +39,6 @@ class HomePage(View):
             file_url = MEDIA_URL + os.path.basename(out_path)
 
             return render(request, 'report/home.html', {'file_url': file_url})
+        
+        return render(request, 'report/home.html', {'form': form})
+
