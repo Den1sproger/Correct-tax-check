@@ -4,7 +4,7 @@ import openpyxl
 import pandas as pd
 
 from openpyxl.styles import PatternFill, Alignment, Font
-from correct_tax.settings import MEDIA_ROOT
+from django.conf import settings
 
 
 
@@ -128,7 +128,7 @@ class ReportGeneration:
         self.__colorize_deviations_col()
         self.__set_columns_width()
 
-        path = os.path.join(MEDIA_ROOT, f'report_{self.time_create}.xlsx')
+        path = os.path.join(settings.MEDIA_ROOT, f'report_{self.time_create}.xlsx')
         self.wb_report.save(path)
 
         return path
