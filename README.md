@@ -13,6 +13,8 @@ Create Django Secret Key [here](https://djecrety.ir/).
 
 Paste secret key to the: **correct_tax/environ/.env**
 
+Paste your broker location to the CELERY_BROKER_URL **correct_tax/environ/.env**
+
 1. Create virtual environment
 
 Windows
