@@ -8,3 +8,5 @@ static:
 	cd correct_tax && python3 manage.py collectstatic --no-input
 all-tests:
 	cd correct_tax && python3 manage.py test .
+celery:
+	cd correct_tax && celery -A correct_tax worker -l INFO
