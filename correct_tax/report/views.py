@@ -39,7 +39,7 @@ class HomePage(View):
             out_path = report.create_report()
             file_url = settings.MEDIA_URL + os.path.basename(out_path)
             
-            delete_out_file.apply_async(args=[out_path], countdown=60)
+            delete_out_file.apply_async(args=[out_path], countdown=10 * 60)
 
             return render(request, 'report/home.html', {'file_url': file_url})
         
