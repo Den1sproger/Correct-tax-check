@@ -135,3 +135,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/out_files/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'out_files')
+
+
+
+# Celery settings
+CELERY_BROKER_URL = env('CELERY_BROKER_URL')
+CELERY_TIMEZONE = env('CELERY_TIMEZONE')
