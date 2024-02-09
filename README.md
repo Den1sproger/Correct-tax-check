@@ -69,6 +69,11 @@ Mac/Linux
 ```
 python3 manage.py runserver
 ```
+6. Open new console and run celery
+```
+cd correct_tax && celery -A correct_tax worker -l INFO
+```
+
 ### Method via makefile
 ***
 3. Collect static files
@@ -79,7 +84,10 @@ make static
 ```
 make run
 ```
-
+5. Open new console and run celery
+```
+make celery
+```
 
 ## Start via Docker
 
