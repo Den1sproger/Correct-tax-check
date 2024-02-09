@@ -16,6 +16,8 @@ services:
     volumes:
       - ./:/app
       - static:/app/static
+      - ./out_files:/app/out_files
+      - ./uploads:/app/uploads
     command: sh -c "python manage.py collectstatic --no-input &&
                     python manage.py runserver 0.0.0.0:8000"
 
@@ -25,7 +27,7 @@ services:
     image: nginx
     restart: always
     ports:
-      - "80:80"
+      - "2567:2567"
     volumes:
       - static:/app/static
       - ./docker/nginx/dev/:/etc/nginx/conf.d:ro
@@ -33,3 +35,23 @@ services:
       - django-app
     depends_on:
       - django-app
+
+  redis:
+    image: redis
+    container_name: redis
+    expose:
+      - 6379
+
+  celery:
+    build:
+      context: .
+    restart: always
+    command: celery -A correct_tax worker --loglevel=info
+    volumes:
+      - ./:/app
+      - ./out_files:/app/out_files
+      - ./uploads:/app/uploads
+    links:
+      - redis
+    depends_on:
+      - redis

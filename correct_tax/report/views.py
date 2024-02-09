@@ -5,6 +5,7 @@ from django.views import View
 from django.utils import timezone
 from .forms import UploadExcelFileForm
 from .gen_report import ReportGeneration
+from .tasks import delete_out_file
 from django.conf import settings
 
 
@@ -37,6 +38,8 @@ class HomePage(View):
             report = ReportGeneration(filepath)
             out_path = report.create_report()
             file_url = settings.MEDIA_URL + os.path.basename(out_path)
+            
+            delete_out_file.apply_async(args=[out_path], countdown=60)
 
             return render(request, 'report/home.html', {'file_url': file_url})
         
